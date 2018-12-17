@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="org.gndrive.emi..emi-bot.main" target="1.8" />
+      <module name="org.gndrive.emi..emi-bot.test" target="1.8" />
+      <module name="org.gndrive.emibot.emi-bot.main" target="1.8" />
+      <module name="org.gndrive.emibot.emi-bot.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
