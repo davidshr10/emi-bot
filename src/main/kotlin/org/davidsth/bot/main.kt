@@ -2,12 +2,10 @@ package org.davidsth.bot
 
 fun main(args: Array<String>) {
 
-    val config = Config("EmiBot", "")
-
-    val emiBot = EmiBot(config)
+    val emiBot = EmiBot()
 
     println("-----------------------------")
-    println("\tInitializing ${config.name}")
+    println("\tInitializing ${emiBot.name}")
     println("-----------------------------")
     emiBot.run()
 }
