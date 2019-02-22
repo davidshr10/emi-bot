@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version("1.3.11")
 }
 
-group = "org.davidsth"
+group = "dev.davidsth"
 version = "1.0-SNAPSHOT"
 
 
@@ -35,4 +35,14 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+apply {
+    plugin("kotlin")
+    plugin("application")
+}
+
+configure<ApplicationPluginConvention> {
+    mainClassName = "dev.davidsth.bot.MainAppKt"
+    applicationDefaultJvmArgs = listOf("-Dprofiles.active=prod")
 }

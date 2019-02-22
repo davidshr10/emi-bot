@@ -1,8 +1,8 @@
-package org.davidsth.bot
+package dev.davidsth.bot
 
 import net.dv8tion.jda.core.JDABuilder
-import org.davidsth.bot.config.BotConfig
-import org.davidsth.bot.config.ConfigUtils
+import dev.davidsth.bot.config.BotConfig
+import dev.davidsth.bot.config.ConfigUtils
 
 class EmiBot {
     private val logger = ConfigUtils.getLogger()
@@ -19,7 +19,5 @@ class EmiBot {
         val jdaBuilder = JDABuilder(config.token).build()
         jdaBuilder.addEventListener(ReadyListener())
         jdaBuilder.addEventListener(MessageHandlerListener())
-
     }
-
 }

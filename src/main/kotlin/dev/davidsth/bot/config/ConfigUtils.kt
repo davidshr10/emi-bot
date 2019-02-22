@@ -1,9 +1,9 @@
-package org.davidsth.bot.config
+package dev.davidsth.bot.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import org.davidsth.bot.EmiBot
+import dev.davidsth.bot.EmiBot
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path

@@ -1,4 +1,4 @@
-package org.davidsth.bot
+package dev.davidsth.bot
 
 fun main(args: Array<String>) {
 

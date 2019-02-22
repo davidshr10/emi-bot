@@ -1,4 +1,4 @@
-package org.davidsth.bot
+package dev.davidsth.bot
 
 import net.dv8tion.jda.core.events.ReadyEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
