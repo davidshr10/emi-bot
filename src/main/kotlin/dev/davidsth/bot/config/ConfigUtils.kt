@@ -10,7 +10,6 @@ import java.nio.file.Path
 import java.util.logging.Level
 import java.util.logging.Logger
 
-
 data class BotConfig(
     val name: String? = "EmiBot",
     val prefix: String? = "!",
