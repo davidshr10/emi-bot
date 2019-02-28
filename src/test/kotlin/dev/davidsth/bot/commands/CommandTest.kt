@@ -1,29 +1,57 @@
 package dev.davidsth.bot.commands
 
-import com.nhaarman.mockitokotlin2.*
-import net.dv8tion.jda.core.entities.Message
-import net.dv8tion.jda.core.entities.User
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent
+import dev.davidsth.bot.EmiBot
+import io.mockk.*
+import net.dv8tion.jda.core.entities.impl.DataMessage
+import net.dv8tion.jda.core.entities.impl.UserImpl
+import org.mockito.ArgumentMatchers.any
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 
-object CommandTest: Spek({
+object CommandSpek: Spek({
+    val command = spyk(Command())
+
     describe("onMessageReceived") {
+        val emiBot = mockk<EmiBot>()
+        every { emiBot.prefix } returns "!"
+
         it("ignores messages without prefix") {
-            val author = spy<User>()
+            val author = spyk(UserImpl(1, any()))
+            val message = mockk<DataMessage>()
+            every { message.contentDisplay } returns "content"
+            every { message.author } returns author
 
-            val message = spy<Message>()
-            val event = mock<MessageReceivedEvent>()
-            whenever(event.message).thenReturn(message)
-            whenever(event.message.contentDisplay).thenReturn("content")
-            whenever(event.message.author).thenReturn(author)
+            command.handleMessageReceived(message)
 
-            val command = mock<Command>()
+            verify(exactly = 0) { command.handleMessage() }
+        }
 
-            command.onMessageReceived(event)
+        it("ignores messages from bot users") {
 
-            verify(command, atLeastOnce()).handleMessage()
+            val author = spyk(UserImpl(1, any()))
+            every { author.isBot } returns true
+
+            val message = mockk<DataMessage>()
+            every { message.contentDisplay } returns "content"
+            every { message.author } returns author
+
+            command.handleMessageReceived(message)
+
+            verify(exactly = 0) { command.handleMessage() }
+        }
+
+        it("handles message with prefix and when user is not bot") {
+            val author = spyk(UserImpl(1, any()))
+            every { author.isBot } returns false
+
+            val message = mockk<DataMessage>()
+            every { message.contentDisplay } returns "!content"
+            every { message.author } returns author
+
+            command.handleMessageReceived(message)
+
+            verify(exactly = 1) { command.handleMessage() }
         }
     }
 })

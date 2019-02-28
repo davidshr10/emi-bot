@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlinVersion = "1.3.11"
 val spekVersion = "2.0.0"
+val mockkVersion = "1.9"
 
 plugins {
     kotlin("jvm") version("1.3.11")
@@ -20,9 +21,9 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
 
     compile("net.dv8tion:JDA:3.8.1_437")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.7.1-1")
-    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.7.1-2")
-    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.7.1")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8")
 
     testImplementation ("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")  {
         exclude ("org.jetbrains.kotlin")
@@ -35,12 +36,12 @@ dependencies {
     // spek requires kotlin-reflect, can be omitted if already in the classpath
     compile(kotlin("reflect"))
 
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    //mock lib
+    testCompile("org.mockito:mockito-inline:2.24.5")
+
     // expect matchers
     testCompile("net.oddpoet:kotlin-expect:1.2.1")
-    testCompile("org.mockito:mockito-inline:2.24.5")
-    //mock lib
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
 
 
     //logger

@@ -11,23 +11,25 @@ class Command : ListenerAdapter(), CommandInterface {
     val EMIBOT = EmiBot.getInstance()
 
     override fun onMessageReceived(e: MessageReceivedEvent) {
+        handleMessageReceived(e.message)
+    }
 
-        val prefix = e.message.contentDisplay.substring(0, 0)
-        val author = e.message.author
-        handleMessage()
+    fun handleMessageReceived(message: Message) {
+        val prefix = message.contentDisplay.substring(0, 1)
+
+        val author = message.author
         if (shouldHandleMessage(prefix, author)) {
-//            handleMessage()
+            handleMessage()
         }
     }
 
     override fun handleMessage() {
-        println("got ehre")
-        return
+
     }
 
     private fun shouldHandleMessage(prefix: String, author: User): Boolean {
         return when {
-            (author.isNotBot && prefix == EMIBOT.prefix) -> true
+            ( author.isNotBot && prefix == EMIBOT.prefix ) -> true
             else -> false
         }
     }
