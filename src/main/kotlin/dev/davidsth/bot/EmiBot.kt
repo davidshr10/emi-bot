@@ -4,14 +4,19 @@ import net.dv8tion.jda.core.JDABuilder
 import dev.davidsth.bot.config.BotConfig
 import dev.davidsth.bot.config.ConfigUtils
 
-class EmiBot {
+class EmiBot private constructor() {
     private val logger = ConfigUtils.getLogger()
 
-    private val config: BotConfig = ConfigUtils.load()
     val name = config.name
+    val prefix = config.prefix
 
     init {
-        logger.config("${this.config}")
+        logger.config("$config")
+    }
+
+    companion object Factory {
+        private val config: BotConfig = ConfigUtils.load()
+        fun getInstance(): EmiBot = EmiBot()
     }
 
     fun run() {
