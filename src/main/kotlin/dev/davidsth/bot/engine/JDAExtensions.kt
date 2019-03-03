@@ -1,4 +1,4 @@
-package dev.davidsth.bot.commands
+package dev.davidsth.bot.engine
 
 import net.dv8tion.jda.core.entities.User
 
