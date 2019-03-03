@@ -19,9 +19,7 @@ object CommandExecutor {
         val trigger = message.contentStripped.substringBefore(" ").substring(1)
         val content = triggerArguments(message.contentStripped)
 
-        println(shouldHandleMessage(author, prefix, trigger))
         if (shouldHandleMessage(author, prefix, trigger)) {
-            println("should not get here")
             val command: Command = commands.getValue(trigger)
             command.handleMessage(author, channel, content)
         }
