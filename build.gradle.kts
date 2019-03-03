@@ -70,6 +70,10 @@ tasks {
         useJUnitPlatform {
             includeEngines("spek2")
         }
+
+        /* This configuration was found here:
+           https://github.com/tieskedh/KotlinPoetDSL/blob/master/build.gradle.kts
+         */
         testLogging {
             // set options for log level LIFECYCLE
             events = setOf(FAILED, PASSED, SKIPPED, STANDARD_OUT)
@@ -83,7 +87,7 @@ tasks {
                 events = setOf(STARTED, FAILED, PASSED, SKIPPED, STANDARD_ERROR, STANDARD_OUT)
                 exceptionFormat = TestExceptionFormat.FULL
             }
-            info{
+            info {
                 events = debug.events
                 exceptionFormat = debug.exceptionFormat
             }
