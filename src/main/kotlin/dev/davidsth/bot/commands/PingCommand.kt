@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.entities.User
 class PingCommand : Command {
 
     override fun handleMessage(author: User, channel: MessageChannel, message: String) {
-
+        sendMessage(channel, "pong")
     }
 
 }

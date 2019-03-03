@@ -5,6 +5,10 @@ import net.dv8tion.jda.core.entities.User
 
 interface Command {
     fun handleMessage(author: User, channel: MessageChannel, message: String)
+
+    fun sendMessage(channel: MessageChannel, message: String) {
+        channel.sendMessage(message).queue()
+    }
 }
 
 typealias CommandMap = Map<String, Command>
