@@ -1,12 +1,15 @@
 package dev.davidsth.bot
 
-import net.dv8tion.jda.core.JDABuilder
 import dev.davidsth.bot.config.BotConfig
 import dev.davidsth.bot.config.ConfigUtils
+import dev.davidsth.bot.listeners.CommandListener
+import dev.davidsth.bot.listeners.ReadyListener
+import net.dv8tion.jda.core.JDABuilder
 
-class EmiBot private constructor() {
+object EmiBot {
     private val logger = ConfigUtils.getLogger()
 
+    private val config: BotConfig = ConfigUtils.load()
     val name = config.name
     val prefix = config.prefix
 
@@ -14,15 +17,9 @@ class EmiBot private constructor() {
         logger.config("$config")
     }
 
-    companion object Factory {
-        private val config: BotConfig = ConfigUtils.load()
-        fun getInstance(): EmiBot = EmiBot()
-    }
-
     fun run() {
-
         val jdaBuilder = JDABuilder(config.token).build()
         jdaBuilder.addEventListener(ReadyListener())
-        jdaBuilder.addEventListener(MessageHandlerListener())
+        jdaBuilder.addEventListener(CommandListener())
     }
 }
