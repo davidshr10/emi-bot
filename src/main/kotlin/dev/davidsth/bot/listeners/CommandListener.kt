@@ -1,11 +1,12 @@
-package dev.davidsth.bot
+package dev.davidsth.bot.listeners
 
+import dev.davidsth.bot.engine.CommandExecutor
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent
 import net.dv8tion.jda.core.hooks.ListenerAdapter
 
-class MessageHandlerListener : ListenerAdapter() {
+class CommandListener : ListenerAdapter() {
+
     override fun onMessageReceived(e: MessageReceivedEvent) {
-        if (e.message.contentDisplay.startsWith("!emi")) {
-        }
+        CommandExecutor.handleMessage(e.message)
     }
 }
