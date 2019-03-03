@@ -28,7 +28,7 @@ object CommandListenerTest : Spek({
         it("calls handleMessage on CommandExecutor") {
             commandListener.onMessageReceived(event)
 
-            verify(atLeast = 1) { CommandExecutor.handleMessage(any()) }
+            verify(exactly = 1) { CommandExecutor.handleMessage(any()) }
         }
     }
 })
