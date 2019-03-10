@@ -14,7 +14,11 @@ with your information.
 
 To run the bot from the command line:
 
-`./gradlew run`
+`./gradlew run -Dprofiles.active=prod`
 
+To run the bot with intellij
+```
+option + ctrl + r -> Run -> Run
+```
 
 ---
