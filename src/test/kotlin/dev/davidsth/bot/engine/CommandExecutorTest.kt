@@ -12,12 +12,8 @@ import org.mockito.ArgumentMatchers.any
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
-class MockCommand : Command {
-    override fun handleMessage(author: User, channel: MessageChannel, message: String) {}
-}
-
 object CommandExecutorTest : Spek({
-    var command = spyk<MockCommand>()
+    var command = spyk<CommandHandler>()
 
     val author = spyk(UserImpl(1, any()))
     val channel = mockk<MessageChannel>()
