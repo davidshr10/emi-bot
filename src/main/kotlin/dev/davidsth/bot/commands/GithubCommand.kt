@@ -5,9 +5,10 @@ import dev.davidsth.bot.engine.CommandHandler
 import net.dv8tion.jda.core.entities.MessageChannel
 import net.dv8tion.jda.core.entities.User
 
-@Command("ping")
-class PingCommand : CommandHandler {
+@Command("github")
+class GithubCommand: CommandHandler {
     override fun handleMessage(author: User, channel: MessageChannel, message: String) {
-        sendMessage(channel, "pong")
+
     }
+
 }

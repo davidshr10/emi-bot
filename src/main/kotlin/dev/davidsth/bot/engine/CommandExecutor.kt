@@ -17,11 +17,11 @@ object CommandExecutor {
         val channel = message.channel
         val prefix = message.contentStripped.substring(0, 1)
         val trigger = message.contentStripped.substringBefore(" ").substring(1)
-        val content = triggerArguments(message.contentStripped)
+        val content = commandArguments(message.contentStripped)
 
         if (shouldHandleMessage(author, prefix, trigger)) {
-            val command: Command = commands.getValue(trigger)
-            command.handleMessage(author, channel, content)
+            val commandHandler: CommandHandler = commands.getValue(trigger)
+            commandHandler.handleMessage(author, channel, content)
         }
     }
 
@@ -34,7 +34,7 @@ object CommandExecutor {
         }
     }
 
-    private fun triggerArguments(contentStripped: String?): String = when (contentStripped) {
+    private fun commandArguments(contentStripped: String?): String = when (contentStripped) {
             null -> ""
             else -> contentStripped.substringAfter(" ")
         }

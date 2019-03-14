@@ -13,7 +13,7 @@ object PingCommandSpek : Spek({
     describe("handleMessage") {
         it("responds with pong") {
             val pingCommand = spyk<PingCommand>()
-            val channel = mockk< TextChannel>()
+            val channel = mockk<TextChannel>()
             every { pingCommand.sendMessage(channel, any()) } returns Unit
             val author = mockk<UserImpl>()
 
