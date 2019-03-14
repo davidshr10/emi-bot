@@ -8,7 +8,7 @@ import net.dv8tion.jda.core.entities.impl.DataMessage
 import net.dv8tion.jda.core.entities.impl.UserImpl
 import net.oddpoet.expect.expect
 import net.oddpoet.expect.extension.be
-import org.mockito.ArgumentMatchers
+import org.mockito.ArgumentMatchers.any
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -19,7 +19,7 @@ class MockCommand : Command {
 object CommandExecutorTest : Spek({
     var command = spyk<MockCommand>()
 
-    val author = spyk(UserImpl(1, ArgumentMatchers.any()))
+    val author = spyk(UserImpl(1, any()))
     val channel = mockk<MessageChannel>()
     val message = mockk<DataMessage>()
 
