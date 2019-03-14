@@ -1,7 +1,7 @@
 package dev.davidsth.bot.engine
 
 import net.oddpoet.expect.expect
-import net.oddpoet.expect.extension.containAll
+import net.oddpoet.expect.extension.contain
 import org.reflections.Reflections
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -12,7 +12,9 @@ object CommandBuilderTest: Spek({
             val classesInPackage = Reflections("dev.davidsth.bot").getSubTypesOf(CommandHandler::class.java).map { it.simpleName }
             val commandMap = CommandBuilder().load().values.map { it::class.simpleName }
 
-            expect(classesInPackage).to.containAll(commandMap)
+            classesInPackage.forEach {
+                expect(commandMap).to.contain(it)
+            }
         }
     }
 })
