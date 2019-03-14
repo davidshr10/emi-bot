@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlinVersion = "1.3.11"
-val spekVersion = "2.0.0"
+val spekVersion = "2.1.0-alpha.0.3+c70a3c3"
 val mockkVersion = "1.9"
 
 plugins {
@@ -16,25 +16,21 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven(url = "https://dl.bintray.com/spekframework/spek-dev/")
     jcenter()
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
+    compile(kotlin("stdlib-jdk8", kotlinVersion))
 
     compile("net.dv8tion:JDA:3.8.1_437")
     compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8")
 
-    testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion") {
-        exclude("org.jetbrains.kotlin")
-    }
-    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion") {
-        exclude("org.junit.platform")
-        exclude("org.jetbrains.kotlin")
-    }
-    testCompile("org.junit.platform:junit-platform-engine:1.3.1")
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 
     // spek requires kotlin-reflect, can be omitted if already in the classpath
     compile(kotlin("reflect"))
