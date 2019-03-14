@@ -27,6 +27,8 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-databind:2.9.8")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.8")
+    compile("org.reflections:reflections:0.9.11")
+
 
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
